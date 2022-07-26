@@ -1,0 +1,80 @@
+﻿@model sampleshopping1frontend.Models.UserRegistration
+
+@{
+    ViewData["Title"] = "MyAccount";
+}
+<head>
+    <script>
+        function myFunction() {
+            document.getElementById("passwd").innerHTML = "@Model.Passwd";
+        }
+
+    </script>
+</head>
+<h1>MyAccount</h1>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Uname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Uname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Passwd)
+        </dt>
+        <dd  class="col-sm-10">
+            <p id="passwd">
+            ********</p><button style="display:inline" type="button" onclick="myFunction()">Show Password</button>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phonenumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phonenumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Addressofuser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Addressofuser)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Uname">Edit</a> |
+    <a asp-action="ProductDetails" asp-controller="Product">Back to Home</a>
+</div>

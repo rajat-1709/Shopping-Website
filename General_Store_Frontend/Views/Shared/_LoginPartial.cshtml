@@ -1,0 +1,83 @@
+﻿@*@using Microsoft.AspNetCore.Identity
+    @inject SignInManager<IdentityUser> SignInManager
+    @inject UserManager<IdentityUser> UserManager
+
+    <ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+    </ul>*@
+
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor;
+
+<ul class="navbar-nav">
+    @{
+        ViewBag.Username = @HttpContextAccessor.HttpContext.Session.GetString("uname");
+        if (ViewBag.Username != null)
+        {
+            if (ViewBag.Username == "admin")
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="Myorder" asp-controller="Cart">Create Product</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" asp-action="Logout" asp-controller="Admin">
+                        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark">Hello  @ViewBag.Username !</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="Myorder" asp-controller="Cart">My Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-action="MyAccount" asp-controller="UserLogin">My Account</a>
+                </li>
+
+                <li class="nav-item">
+                    <form class="form-inline" asp-action="logout" asp-controller="UserLogin">
+                        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                    </form>
+                </li>
+
+            }
+
+
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-action="login" asp-controller="UserLogin">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-action="Adminlogin" asp-controller="Admin">Admin Login</a>
+            </li>
+
+        }
+    }
+</ul>
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<sampleshopping1frontend.Models.Products>
+
+@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = "_adminlayout";
+}
+
+<h1>ProductDetails</h1>
+
+<p>
+    <a asp-action="AddProduct">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pdescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pqty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pimageurl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pshow)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdescription)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pqty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pimageurl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pshow)
+            </td>
+            <td>
+                <a asp-action="UpdateProduct" asp-route-id="@item.Pid">Edit</a> |
+                @*<a asp-action="Details" asp-route-id="@item.Pid">Details</a> |*@
+                <a asp-action="DeleteProduct" asp-route-id="@item.Pid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

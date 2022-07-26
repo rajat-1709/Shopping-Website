@@ -1,0 +1,120 @@
+﻿@model IEnumerable<sampleshopping1frontend.Models.ShoppingCart>
+
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Cart";
+    ViewBag.tt = 0;
+
+    foreach (var item in Model)
+    {
+        if (item.itemPaidSuccesfully == 0)
+        {
+            ViewBag.tt = ViewBag.tt + item.Tprice;
+
+        }
+    }
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart UI</title>
+<link rel="stylesheet" href="~/css/Cart.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+</head>
+<body>
+    <div class="CartContainer">
+        <div class="Header">
+            <h1 class="Heading">Shopping Cart</h1>
+            <h5 class="Action">Remove all</h5>
+        </div>
+        @foreach (var item in Model)
+        {
+            if (item.itemPaidSuccesfully == 0)
+            {
+                <div class="Cart-Items">
+                    <div class="about">
+                        <h3 class="title">@item.pname</h3>
+                        <h5 class="subtitle">Quantity:  @item.quant</h5>
+                        <h5 class="subtitle">Price:  $@item.pprice</h5>
+                    </div>
+                    <div class="prices">
+                        <div class="amount">$@item.Tprice</div>
+                        <div class="remove"><u>Remove</u></div>
+                    </div>
+                </div>
+            }
+        }
+                <hr/>
+                <div class="checkout">
+                    <div class="total">
+                        <div>
+                            <div class="Subtotal">Sub-Total</div>
+                        </div>
+                        <div class="total-amount">$@ViewBag.tt</div>
+                    </div>
+                    <a asp-action="MakePayment" asp-controller="Cart" asp-route-tprice="@ViewBag.tt"> <button class="button">Checkout</button></a>
+                </div>
+            </div>
+</body>
+</html>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pprice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tprice)
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.itemPaidSuccesfully == 0)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pprice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tprice)
+
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<p> Grand Total = $ @ViewBag.tt</p>*@
+
+@*<a asp-action="MakePayment" asp-controller="Cart" asp-route-tprice="@ViewBag.tt">Place Order</a>*@

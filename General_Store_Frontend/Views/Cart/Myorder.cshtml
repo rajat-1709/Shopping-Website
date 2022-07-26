@@ -1,0 +1,63 @@
+﻿@model IEnumerable<sampleshopping1frontend.Models.Orderdetails>
+
+@{
+    ViewData["Title"] = "Myorder";
+}
+
+<h1>My Orders</h1>
+
+
+@if (Model.Count()!= 0)
+{
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Productname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productqty)
+            </th>
+            <th>
+                $@Html.DisplayNameFor(model => model.productTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.productorderdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.deliverydate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Productname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Productqty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productorderdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deliverydate)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
+}
+else
+{
+    <h3>No OrdersFound</h3>
+}

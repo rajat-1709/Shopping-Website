@@ -1,0 +1,84 @@
+﻿@model IEnumerable<sampleshopping1frontend.Models.Products>
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+
+<h1>Product Details</h1>
+
+
+
+
+
+@*<p>
+    <a asp-action="AddProduct">Create New</a>
+</p>*@
+<div class="container">
+    <div class="row" >
+        @foreach (var item in Model)
+        {
+        <div style="padding: 8px">
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top" src="@Url.Content(item.Pimageurl)" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Pname)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Pdescription)</p>
+                    <p class="card-text">$@Html.DisplayFor(modelItem => item.Price)</p>
+
+                    <a asp-action="GetProductDetailsByid" asp-controller="Product" asp-route-id="@item.Pid" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+            </div>
+        }
+        </div>
+    @*</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pid)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pqty)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pimageurl)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pqty)
+                        </td>
+                        <td>
+
+
+                            <div class="display-field">
+                                <img src="@Url.Content(item.Pimageurl)" />
+                            </div>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>*@
